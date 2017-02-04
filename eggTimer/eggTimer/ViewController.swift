@@ -12,16 +12,17 @@ class ViewController: UIViewController {
     
     var i = 210
     var timer = Timer()
-    
-    func timeMove() {
-        i -= 1
-        timeLabel.text = String(i)
-    }
-
     @IBOutlet weak var timeLabel: UILabel!
     
+    func timeMove() {
+        if i > 0 {
+            i -= 1
+            timeLabel.text = String(i)
+        }
+    }
+    
     @IBAction func pauseButton(_ sender: Any) {
-        timer.fire()
+        timer.invalidate()
     }
     
     @IBAction func playButton(_ sender: Any) {
@@ -29,13 +30,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func minusButton(_ sender: Any) {
-        if i > 10 { i -= 10}
-        timeLabel.text = String(i)
+        if i > 9 {
+            i -= 10
+            timeLabel.text = String(i)
+        }
+        
     }
     
     @IBAction func plusButton(_ sender: Any) {
-        if i > 10 { i -= 10}
-        timeLabel.text = String(i)
+        if i < 201 {
+            i += 10
+            timeLabel.text = String(i)
+        }
     }
     
     @IBAction func resetButton(_ sender: Any) {
